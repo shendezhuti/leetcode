@@ -47,7 +47,7 @@ leetcode：
 			cost[i][1]=cost[i][1]+Math.min(cost[i-1][0],cost[i-1][2]);
 			cost[i][2]=cost[i][2]+Math.min(cost[i-1][0],cost[i-1][1]);
 
-			因为我们不知道哪个最小，所以实际上我们应该要返回三个中的最小值
+因为我们不知道哪个最小，所以实际上我们应该要返回三个中的最小值
 
 62 unique paths
 
@@ -124,7 +124,7 @@ else 我们有 for(TreeNode left:leftList){
 
 120 Triangle
 
-	这道题目的思路是 我们可以从先倒数第二行看起，如果路径要通过第j个元素，那么下一行路径可以通过第j个或者第j+1个元素。我们直接对倒数第二行开始的j元素做一个modify.每个元素加上下一行的j和j+1元素中取小的一个元素。每行都是如此，最后，第一行的第一个元素就是我们要求的最小值
+这道题目的思路是 我们可以从先倒数第二行看起，如果路径要通过第j个元素，那么下一行路径可以通过第j个或者第j+1个元素。我们直接对倒数第二行开始的j元素做一个modify.每个元素加上下一行的j和j+1元素中取小的一个元素。每行都是如此，最后，第一行的第一个元素就是我们要求的最小值
 	这写代码的时候应该有两层循环，外层循环控制行数，内存循环控制第j个元素，每次内存循环，我们要拿出上一行元素。
 	List<Integer>nextrow=triangle.get(i)
 
@@ -156,7 +156,7 @@ for(int num:num)
 	 num=Math.max(num[i]+prenum,num);
 	 prenum=temp;
 
-	 一定要注意先把num给一个临时变量存储，再判断num的数值，最后再把num传给prenum.
+ 一定要注意先把num给一个临时变量存储，再判断num的数值，最后再把num传给prenum.
 
 
 3.28 
@@ -208,7 +208,7 @@ dp[13] = Min{ dp[13-1*1]+1, dp[13-2*2]+1, dp[13-3*3]+1 }
        = Min{ dp[12]+1, dp[9]+1, dp[4]+1 } 
        = 2
 
-      看了例子后，我的理解就是 这个状态方程是通过遍历出所有dp[n-i*i]+1的值，由于我们要找出最少平方数组成n，因此我们要从取出dp[n-i*i]+1当中的最小值。
+  看了例子后，我的理解就是 这个状态方程是通过遍历出所有dp[n-i*i]+1的值，由于我们要找出最少平方数组成n，因此我们要从取出dp[n-i*i]+1当中的最小值。
       比如dp[100]实际上dp[100]=dp[100-10*10]+1 =1,因为我们减去了一个平方数，因此结果+1;
 
 
@@ -290,7 +290,7 @@ base case: dp[0]=0
 dp formula: 
 		dp[i]=cost[i]+Math.min(dp[i-1],dp[i-2]);
 
-		return Math.min(dp[cost.length],dp[cost.length-1]）;
+return Math.min(dp[cost.length],dp[cost.length-1]）;
 
 3.30
 84  Largest Rectangle in Histogram
@@ -452,7 +452,7 @@ Use element's right neighbor to determine if condition is met and decide whether
 	 			我们让hi=mid;
 	 			else 说明断点在右边 我们让lo=mid+1；
 
-	 		我们令循环while(lo<hi) 最后退出循环时lo=hi 就是最小值的索引
+我们令循环while(lo<hi) 最后退出循环时lo=hi 就是最小值的索引
 
 网上看到了一个比较清晰的思路 且有几个注意点：
 下面一段我写的，更为简洁的代码。看几个例子，7 8 0 1 2 3 4 5 6，mid=2；3 4 5 6 7 8 0 1 2，mid=7。
@@ -628,12 +628,10 @@ base case: 如果root==null 那么这一层depth=0
 
  for (Node child : root.children) { //replace left&right to for loop
             int value = maxDepth(child);
-            
             if (value > max) {
                 max = value;
             }
-
-          最后返回 max+1;
+最后返回 max+1;
 
 
 733. Flood Fill
@@ -670,7 +668,6 @@ root.right=helper(prestart+(index-instart)+1,index+1,inend,inorder,preorder);
 并且初始传入的时候是 dfs(head,null)。
 在dfs函数内部 我们要设置TreeNode fast =head;
 					TreeNode slow=head;
-
 			while(fast!=tail&&fast.next!=tail){
 			fast=fast.next.next;
 			slow=slow.next.next;
@@ -678,8 +675,7 @@ root.right=helper(prestart+(index-instart)+1,index+1,inend,inorder,preorder);
 			 TreeNode root = new TreeNode(slow.val);
 			 root.left = dfs(head, slow);
         	 root.right = dfs(slow.next, tail);
-
-        	 我自己感觉这里的while循环内条件容易弄错，我第一次写的时候直接是null。
+		 我自己感觉这里的while循环内条件容易弄错，我第一次写的时候直接是null。
         	 然后root.left=dfs函数中 tail的变量输入量是slow。
         	 	root.right=dfs函数中 head的变量输入量是slow.next;
 
